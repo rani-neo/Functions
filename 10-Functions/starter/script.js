@@ -88,7 +88,9 @@ const high5 = function () {
 };
 document.body.addEventListener('click', high5);
 ['Jonas', 'Martha', 'Adam'].forEach(high5);
-*/
+
+/////////////////
+ // Function returning function
 const greet = function (greeting) {
     return function (name) {
         console.log(`${greeting} ${name}`);
@@ -100,12 +102,66 @@ greeterHey('Steven');
 
 greet('Hello')('Jonas');
 
- 
+// Challenge  using Arrow function
+const greetArr = greeting => name => console.log(`${greeting} ${name}`);
+greetArr('Hi')('Jonas');
+*/
+///////////////////////
+// The Call and apply method
+const lufthansa = {
+  airline: 'Lufthansa',
+  iataCode: 'LH',
+  bookings: [],
+  book(flightNum, name) {
+    console.log(
+      `${name} booked a seat on ${this.airline} flight ${this.iataCode}${flightNum}`
+    );
+    this.bookings.push({ flight: `${this.iataCode}${flightNum}`, name });
+  },
+};
+
+lufthansa.book(239, 'Jonas Schmedtmann');
+lufthansa.book(635, 'John Smith');
+console.log(lufthansa);
+
+const eurowings = {
+  airline: 'Eurowings',
+  iataCode: 'EW',
+  bookings: [],
+};
+
+// Using call method to bind `this` to eurowings
+const book = lufthansa.book;
+book.call(eurowings, 23, 'Sarah Williams');  // Correct usage with call
+console.log(eurowings);
+
+book.call(lufthansa, 239, 'Mary Cooper');   // Call with lufthansa context
+console.log(lufthansa);
+
+const swiss = {
+  airline: 'Swiss Air Lines',
+  iataCode: 'LX',
+  bookings: [],
+};
+
+// Using call method to bind `this` to swiss
+book.call(swiss, 583, 'Mary Cooper');
+
+// Apply method
+const flightData = [583, 'George Cooper'];
+book.apply(swiss, flightData);
+console.log(swiss);
 
 
 
 
 
- 
- 
- 
+
+
+
+
+
+
+
+
+
