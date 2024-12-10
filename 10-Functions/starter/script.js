@@ -146,18 +146,24 @@ const swiss = {
 
 // Using call method to bind `this` to swiss
 book.call(swiss, 583, 'Mary Cooper');
-
 // Apply method
 const flightData = [583, 'George Cooper'];
 book.apply(swiss, flightData);
 console.log(swiss);
 
+book.call(swiss, ...flightData);
 
+//////////////////////
+// Bind method
+// book.call(eurowings, 23, 'Sarah Williams');
+const bookEW = book.bind(eurowings);
+const bookLH = book.bind(lufthansa);
+const bookLX = book.bind(swiss);
+bookEW(23, 'Steven Williams');
 
-
-
-
-
+const bookEW23 = book.bind(eurowings, 23);
+bookEW23('Jonas Schmedtmann');
+bookEW23('Martha Cooper');
 
 
 
