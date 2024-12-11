@@ -193,7 +193,6 @@ const addVAT2 = addTaxRate(0.23);
 console.log(addVAT2(100));
 console.log(addVAT2(23));
 
-*/
 //Let's build a simple poll app!
 //
 //A poll has a question, an array of options from which people can choose, and an array 
@@ -274,8 +273,40 @@ poll.displayResults.call({answers: [1, 5, 3, 9, 6, 1]})
 // [1, 5, 3, 9, 6, 1]
 
 
-
-
+///////////////////////////////////////
+// Immediately Invoked Function Expressions (IIFE)
+const runOnce = function () {
+    console.log('This will never run again');
+};
+runOnce();
+// IEFE
+(function () {
+    console.log('This will never run again');
+    const isPrivate = 23;
+})();
+//console.log(isPrivate);
+(() => console.log('This will ALSO never run again'))();
+{
+    const isPrivate = 23;
+    var notPrivate = 46;
+}
+// console.log(isPrivate);
+console.log(notPrivate);
+*/
+///////////**
+//// Closures
+const secureBooking = function () {
+    let passengerCount = 0;
+    return function () {
+        passengerCount++;
+        console.log(`${passengerCount} passengers`);
+    };
+};
+const booker = secureBooking();
+booker();
+booker();
+booker();
+console.dir(booker);
 
 
 
